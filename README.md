@@ -1,13 +1,18 @@
 ### 설치
 ```shell
 yarn install
+cd client
+yarn install
 ```
 
 ### 프로젝트 시작
 ```shell
 yarn start
+cd client
+yarn dev
 ```
 
+서버와 클라이언트 따로 켜주셔야 합니당
 
 
 # 1-1) 사전과제 진행 가이드
