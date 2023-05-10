@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import CommonLayout from '@layouts/CommonLayout';
 import AuthFormContent from '@parts/Auth/AuthFormContent';
+import { parseJwt } from '@utils/jwt';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import cookie from 'react-cookies';
 
@@ -35,6 +36,16 @@ export default function Auth() {
     const handleSignin = () => {
         signinMutation.mutate({ email: emailState, password: passwordState });
     };
+
+    useEffect(() => {
+        const token = cookie.load('token');
+        if (token) {
+            const decoded = parseJwt(token + 'dwqweq');
+            if (!!decoded) {
+                router.push('/');
+            }
+        }
+    }, []);
 
     return (
         <CommonLayout>
